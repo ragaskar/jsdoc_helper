@@ -1,0 +1,56 @@
+jsdoc_helper
+    by Pete Gadomski
+    http://github.com/quentonc/jsdoc_helper/tree/master
+
+== DESCRIPTION:
+
+JsdocHelper provides rake tasks for jsdoc-toolkit, a Javascript documentation generator.
+
+JsdocHelper includes:
+* A copy of jsdoc-toolkit. JsDoc Toolkit is an application, written in JavaScript, for automatically generating template-formatted, multi-page HTML (or XML, JSON, or any other text-based) documentation from commented JavaScript source code. (from http://code.google.com/p/jsdoc-toolkit/)
+* A class that defines rake tasks to generate your jsdoc
+
+== FEATURES/PROBLEMS:
+
+* +jsdoc_helper+ includes in its package <tt>jsdoc-toolkit 2.1.0</tt>, which requires a recent version of Java to be installed on your computer. Refer to the jsdoc-toolkit <tt>README.txt</tt>, located in <tt>ext/jsdoc-toolkit</tt>, for exact requirements and instructions.
+* You cannot easily customize JsdocHelper as now (custom locations for jsdoc-toolkit, etc). I have been developing this package along with my own use of it, so I'll add features as I find them useful and/or I get requests.
+
+== SYNOPSIS:
+
+Include the following in your Rakefile:
+
+  require 'rubygems'  # if needed
+  require 'jsdoc_helper'
+  
+  JsdocHelper::Rake::Task.new
+  
+Generate your doc with
+
+  rake jsdoc
+  
+You can give your jsdoc task a new name
+
+  JsdocHelper::Rake::Task.new(:jsdoc_toolkit)
+
+== REQUIREMENTS:
+
+* rake
+      sudo gem install rake
+
+== INSTALL:
+
+JsdocHelper can be installed via RubyGems
+
+  sudo gem install
+
+You can get the source from GitHub
+
+  git clone git://github.com/quentonc/jsdoc_helper.git
+
+== LICENSE:
+
+Creative Commons Attribution-Share Alike 3.0 Unported
+http://creativecommons.org/licenses/by-sa/3.0/
+
+jsdoc-toolkit is released under the MIT license
+http://www.opensource.org/licenses/mit-license.php
