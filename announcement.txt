@@ -1,0 +1,21 @@
+jsdoc_helper version 0.0.2
+    by Pete Gadomski
+    http://github.com/quentonc/jsdoc_helper/tree/master
+
+== DESCRIPTION
+
+Rake tasks for jsdoc-toolkit, a Javascript documentation generator.
+
+jsdoc_helper includes:
+* jsdoc-toolkit v2.1.0
+  * jsdoc-toolkit is an application, written in JavaScript, for automatically generating template-formatted, multi-page HTML (or XML, JSON, or any other text-based) documentation from commented JavaScript source code
+  * learn more at http://code.google.com/p/jsdoc-toolkit
+* rake tasks to generate your jsdoc
+
+== CHANGES
+* A few major enhancements
+  * Added rspec testing to ensure features are robust
+  * Added better ability to customize the jsdoc-toolkit command and options
+
+== 0.0.1 / 2009-07-27
+
