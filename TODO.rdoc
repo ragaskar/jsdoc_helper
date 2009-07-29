@@ -1,0 +1,5 @@
+== output
+* it would be nice to have some sort of output while the jsdoc-toolkit is running. maybe a rdoc-type file list, etc?
+
+== default name
+* consider making the default name 'doc' instead of 'jsdoc'?
