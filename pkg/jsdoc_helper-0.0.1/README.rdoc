@@ -4,50 +4,55 @@ jsdoc_helper
 
 == DESCRIPTION:
 
-JsdocHelper provides rake tasks for jsdoc-toolkit, a Javascript documentation generator.
+Rake tasks for jsdoc-toolkit, a Javascript documentation generator.
 
-JsdocHelper includes:
-* A copy of jsdoc-toolkit. JsDoc Toolkit is an application, written in JavaScript, for automatically generating template-formatted, multi-page HTML (or XML, JSON, or any other text-based) documentation from commented JavaScript source code. (from http://code.google.com/p/jsdoc-toolkit/)
-* A class that defines rake tasks to generate your jsdoc
+jsdoc_helper includes:
+* jsdoc-toolkit v2.1.0
+  * jsdoc-toolkit is an application, written in JavaScript, for automatically generating template-formatted, multi-page HTML (or XML, JSON, or any other text-based) documentation from commented JavaScript source code
+  * learn more at http://code.google.com/p/jsdoc-toolkit
+* rake tasks to generate your jsdoc
 
 == FEATURES/PROBLEMS:
 
-* +jsdoc_helper+ includes in its package <tt>jsdoc-toolkit 2.1.0</tt>, which requires a recent version of Java to be installed on your computer. Refer to the jsdoc-toolkit <tt>README.txt</tt>, located in <tt>ext/jsdoc-toolkit</tt>, for exact requirements and instructions.
-* You cannot easily customize JsdocHelper as now (custom locations for jsdoc-toolkit, etc). I have been developing this package along with my own use of it, so I'll add features as I find them useful and/or I get requests.
+* Customize your file names, templates, options, or use your own installation of jsdoc-toolkit
 
 == SYNOPSIS:
 
 Include the following in your Rakefile:
-
   require 'rubygems'  # if needed
   require 'jsdoc_helper'
   
   JsdocHelper::Rake::Task.new
   
 Generate your doc with
-
-  rake jsdoc
+  $rake jsdoc
   
 You can give your jsdoc task a new name
-
   JsdocHelper::Rake::Task.new(:jsdoc_toolkit)
+
+Or specify other options
+  JsdocHelper::Rake::Task.new do |t|
+    t[:options] = '--private'
+    t[:out] = 'html'
+    t[:template] = 'prettier/template'
+    t[:toolkit] = '/usr/local/lib/jsdoc-toolkit'
+  end
 
 == REQUIREMENTS:
 
+* Java. Refer to the jsdoc-toolkit <tt>README.txt</tt>, located in <tt>ext/jsdoc-toolkit</tt>, for exact requirements and instructions
 * rake
       sudo gem install rake
-      
-* open4 for testing
+* (optional) open4 for testing
       sudo gem install open4
 
 == INSTALL:
 
-JsdocHelper can be installed via RubyGems
-
-  sudo gem install
-
-You can get the source from GitHub
-
+JsdocHelper can be installed via RubyGems, hosted on github. If you haven't already
+  gem sources -a http://gems.github.com
+Then
+  sudo gem install quentonc-jsdoc_helper
+The source is on GitHub
   git clone git://github.com/quentonc/jsdoc_helper.git
 
 == LICENSE:

@@ -59,6 +59,10 @@
                 lib/jsdoc_helper/rake/task.rb
                 </a>
         <br />
+                <a href="../../../files/lib/jsdoc_helper/rake/task/runner_rb.html">
+                lib/jsdoc_helper/rake/task/runner.rb
+                </a>
+        <br />
             </td>
         </tr>
 
@@ -78,6 +82,24 @@
 
   <div id="contextContent">
 
+    <div id="description">
+      <p>
+Encapsulates rake tasks for generating jsdoc documentation
+</p>
+<p>
+example:
+</p>
+<pre>
+  JsdocHelper::Rake::Task.new do |t|
+    t[:toolkit] = '/usr/local/lib/jsdoc-toolkit'
+    t[:files] &lt;&lt; 'ext'
+    t[:template] = 'templates/jsdoc_custom'
+    t[:out] = 'html'
+    t[:options] = '--private'
+  end
+</pre>
+
+    </div>
 
 
    </div>
@@ -86,7 +108,6 @@
       <h3 class="section-bar">Methods</h3>
 
       <div class="name-list">
-      <a href="#M000006">all_js_files</a>&nbsp;&nbsp;
       <a href="#M000005">new</a>&nbsp;&nbsp;
       </div>
     </div>
@@ -98,7 +119,26 @@
 
     <div id="section">
 
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
 
+      Class <a href="Task/Runner.html" class="link">JsdocHelper::Rake::Task::Runner</a><br />
+
+    </div>
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">DEFAULT_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">'jsdoc'</td>
+        </tr>
+        </table>
+      </div>
+    </div>
 
 
 
@@ -114,60 +154,23 @@
 
         <div class="method-heading">
           <a href="#M000005" class="method-signature">
-          <span class="method-name">new</span><span class="method-args">(task_name='jsdoc')</span>
+          <span class="method-name">new</span><span class="method-args">(task_name=DEFAULT_NAME) {|self if block_given?| ...}</span>
           </a>
         </div>
       
         <div class="method-description">
+          <p>
+Create a <a href="Task.html#M000005">new</a> jsdoc-toolkit task. If a block
+is passed, the task object will be passed as an argument to the block.
+</p>
           <p><a class="source-toggle" href="#"
             onclick="toggleCode('M000005-source');return false;">[Source]</a></p>
           <div class="method-source-code" id="M000005-source">
 <pre>
-<span class="ruby-comment cmt"># File lib/jsdoc_helper/rake/task.rb, line 5</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">task_name</span>=<span class="ruby-value str">'jsdoc'</span>)
-        
-        <span class="ruby-ivar">@jsdoc_dir</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">JsdocHelper</span>.<span class="ruby-identifier">path</span>(<span class="ruby-operator">::</span><span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'ext'</span>, <span class="ruby-value str">'jsdoc-toolkit'</span>))
-        <span class="ruby-ivar">@java_binary</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">'java'</span>
-        <span class="ruby-ivar">@jsrun_jar</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">'jsrun.jar'</span>
-        <span class="ruby-ivar">@app_run</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">'app/run.js'</span>
-        <span class="ruby-ivar">@flags</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">''</span>
-        <span class="ruby-ivar">@template</span> <span class="ruby-operator">||=</span> <span class="ruby-value str">'templates/jsdoc'</span>
-        <span class="ruby-ivar">@outfile</span> <span class="ruby-operator">||=</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-value str">'doc'</span>)
-        <span class="ruby-ivar">@files</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">all_js_files</span>
-        
-        <span class="ruby-identifier">desc</span> <span class="ruby-value str">&quot;Generate jsdoc-toolkit documentation&quot;</span>
-        <span class="ruby-identifier">task</span> <span class="ruby-identifier">task_name</span> <span class="ruby-keyword kw">do</span>
-          <span class="ruby-identifier">command</span> = <span class="ruby-node">&quot;#{@java_binary} -jar #{@jsrun_jar} #{@app_run} #{@flags} -d=#{@outfile} -t=#{@template} #{@files.join(' ')}&quot;</span>
-          <span class="ruby-identifier">puts</span> <span class="ruby-identifier">command</span>
-          <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">chdir</span>(<span class="ruby-ivar">@jsdoc_dir</span>) <span class="ruby-keyword kw">do</span>
-            <span class="ruby-identifier">sh</span> <span class="ruby-identifier">command</span>
-          <span class="ruby-keyword kw">end</span>          
-        <span class="ruby-keyword kw">end</span>
-      <span class="ruby-keyword kw">end</span>
-</pre>
-          </div>
-        </div>
-      </div>
-
-      <h3 class="section-bar">Public Instance methods</h3>
-
-      <div id="method-M000006" class="method-detail">
-        <a name="M000006"></a>
-
-        <div class="method-heading">
-          <a href="#M000006" class="method-signature">
-          <span class="method-name">all_js_files</span><span class="method-args">()</span>
-          </a>
-        </div>
-      
-        <div class="method-description">
-          <p><a class="source-toggle" href="#"
-            onclick="toggleCode('M000006-source');return false;">[Source]</a></p>
-          <div class="method-source-code" id="M000006-source">
-<pre>
-<span class="ruby-comment cmt"># File lib/jsdoc_helper/rake/task.rb, line 26</span>
-      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">all_js_files</span>
-        <span class="ruby-constant">Dir</span>.<span class="ruby-identifier">glob</span>(<span class="ruby-value str">'lib/**/*.js'</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">f</span><span class="ruby-operator">|</span> <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">f</span>) }
+<span class="ruby-comment cmt"># File lib/jsdoc_helper/rake/task.rb, line 23</span>
+      <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">task_name</span>=<span class="ruby-constant">DEFAULT_NAME</span>)
+        <span class="ruby-keyword kw">yield</span> <span class="ruby-keyword kw">self</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">block_given?</span>
+        <span class="ruby-identifier">define_task</span>(<span class="ruby-identifier">task_name</span>)
       <span class="ruby-keyword kw">end</span>
 </pre>
           </div>

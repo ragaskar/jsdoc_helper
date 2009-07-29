@@ -20,7 +20,7 @@ module JsdocHelper
     args.empty? ? LIBPATH : ::File.join(LIBPATH, args.flatten)
   end
 
-  # Returns the lpath for the module. If any arguments are given,
+  # Returns the path for the module. If any arguments are given,
   # they will be joined to the end of the path using
   # <tt>File.join</tt>.
   #

@@ -56,7 +56,7 @@
     </tr>
     <tr class="top-aligned-row">
       <td><strong>Last Update:</strong></td>
-      <td>Tue Jul 28 12:18:55 -0400 2009</td>
+      <td>Wed Jul 29 13:45:14 -0400 2009</td>
     </tr>
     </table>
   </div>
@@ -78,37 +78,34 @@ jsdoc_helper
 </pre>
 <h2>DESCRIPTION:</h2>
 <p>
-<a href="../classes/JsdocHelper.html">JsdocHelper</a> provides rake tasks
-for jsdoc-toolkit, a Javascript documentation generator.
+Rake tasks for jsdoc-toolkit, a Javascript documentation generator.
 </p>
 <p>
-<a href="../classes/JsdocHelper.html">JsdocHelper</a> includes:
+jsdoc_helper includes:
 </p>
 <ul>
-<li>A copy of jsdoc-toolkit. JsDoc Toolkit is an application, written in
-JavaScript, for automatically generating template-formatted, multi-page
-HTML (or XML, JSON, or any other text-based) documentation from commented
-JavaScript source code. (from <a
-href="http://code.google.com/p/jsdoc-toolkit">code.google.com/p/jsdoc-toolkit</a>/)
+<li>jsdoc-toolkit v2.1.0
+
+<ul>
+<li>jsdoc-toolkit is an application, written in JavaScript, for automatically
+generating template-formatted, multi-page HTML (or XML, JSON, or any other
+text-based) documentation from commented JavaScript source code
 
 </li>
-<li>A class that defines rake tasks to generate your jsdoc
+<li>learn more at <a
+href="http://code.google.com/p/jsdoc-toolkit">code.google.com/p/jsdoc-toolkit</a>
+
+</li>
+</ul>
+</li>
+<li>rake tasks to generate your jsdoc
 
 </li>
 </ul>
 <h2>FEATURES/PROBLEMS:</h2>
 <ul>
-<li><tt>jsdoc_helper</tt> includes in its package <tt>jsdoc-toolkit 2.1.0</tt>,
-which requires a recent version of Java to be installed on your computer.
-Refer to the jsdoc-toolkit <tt>README.txt</tt>, located in
-<tt>ext/jsdoc-toolkit</tt>, for exact requirements and instructions.
-
-</li>
-<li>You cannot easily customize <a
-href="../classes/JsdocHelper.html">JsdocHelper</a> as now (custom locations
-for jsdoc-toolkit, etc). I have been developing this package along with my
-own use of it, so I&#8216;ll add features as I find them useful and/or I
-get requests.
+<li>Customize your file names, templates, options, or use your own installation
+of jsdoc-toolkit
 
 </li>
 </ul>
@@ -126,7 +123,7 @@ Include the following in your Rakefile:
 Generate your doc with
 </p>
 <pre>
-  rake jsdoc
+  $rake jsdoc
 </pre>
 <p>
 You can give your jsdoc task a new name
@@ -134,25 +131,52 @@ You can give your jsdoc task a new name
 <pre>
   JsdocHelper::Rake::Task.new(:jsdoc_toolkit)
 </pre>
+<p>
+Or specify other options
+</p>
+<pre>
+  JsdocHelper::Rake::Task.new do |t|
+    t[:options] = '--private'
+    t[:out] = 'html'
+    t[:template] = 'prettier/template'
+    t[:toolkit] = '/usr/local/lib/jsdoc-toolkit'
+  end
+</pre>
 <h2>REQUIREMENTS:</h2>
 <ul>
+<li>Java. Refer to the jsdoc-toolkit <tt>README.txt</tt>, located in
+<tt>ext/jsdoc-toolkit</tt>, for exact requirements and instructions
+
+</li>
 <li>rake
 
 <pre>
     sudo gem install rake
 </pre>
 </li>
+<li>(optional) open4 for testing
+
+<pre>
+    sudo gem install open4
+</pre>
+</li>
 </ul>
 <h2>INSTALL:</h2>
 <p>
 <a href="../classes/JsdocHelper.html">JsdocHelper</a> can be installed via
-RubyGems
+RubyGems, hosted on github. If you haven&#8216;t already
 </p>
 <pre>
-  sudo gem install
+  gem sources -a http://gems.github.com
 </pre>
 <p>
-You can get the source from GitHub
+Then
+</p>
+<pre>
+  sudo gem install quentonc-jsdoc_helper
+</pre>
+<p>
+The source is on GitHub
 </p>
 <pre>
   git clone git://github.com/quentonc/jsdoc_helper.git
