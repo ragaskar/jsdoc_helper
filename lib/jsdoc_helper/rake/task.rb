@@ -1,32 +1,34 @@
+require 'forwardable'
 module JsdocHelper
   module Rake
     class Task
-    
-      def initialize(task_name='jsdoc')
-        
-        @jsdoc_dir ||= JsdocHelper.path(::File.join('ext', 'jsdoc-toolkit'))
-        @java_binary ||= 'java'
-        @jsrun_jar ||= 'jsrun.jar'
-        @app_run ||= 'app/run.js'
-        @flags ||= ''
-        @template ||= 'templates/jsdoc'
-        @outfile ||= File.expand_path('doc')
-        @files ||= all_js_files
-        
+      
+      extend Forwardable
+      def_delegators :runner, :[]=
+      
+      DEFAULT_NAME = 'jsdoc'
+      
+      attr_accessor :jsdoc_toolkit
+      
+      # Create a new jsdoc-toolkit task
+      def initialize(task_name=DEFAULT_NAME)
+        yield self if block_given?
+        define_task(task_name)
+      end
+      
+      private
+      
+      def define_task(task_name)
         desc "Generate jsdoc-toolkit documentation"
         task task_name do
-          command = "#{@java_binary} -jar #{@jsrun_jar} #{@app_run} #{@flags} -d=#{@outfile} -t=#{@template} #{@files.join(' ')}"
-          puts command
-          Dir.chdir(@jsdoc_dir) do
-            sh command
-          end          
+          runner.run
         end
       end
       
-      def all_js_files
-        Dir.glob('lib/**/*.js').map { |f| File.expand_path(f) }
+      def runner
+        @runner ||= Runner.new
       end
-    
+      
     end
   end
 end

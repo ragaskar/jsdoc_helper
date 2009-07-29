@@ -27,7 +27,7 @@ task :features => 'features:run'
 ensure_in_path 'lib'
 require 'jsdoc_helper'
 
-task :default => 'features:run'
+task :default => 'spec:run'
 
 PROJ.name = 'jsdoc_helper'
 PROJ.authors = 'Pete Gadomski'

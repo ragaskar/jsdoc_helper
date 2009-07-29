@@ -1,4 +1,4 @@
-$LOAD_PATH.unshift('/Users/petegadomski/Developer/jsdoc_helper/lib')
+$LOAD_PATH.unshift('/Users/petegadomski/Developer/jsdoc_helper/lib/')
 require 'jsdoc_helper'
 
-JsdocHelper::Rake::Task.new
+JsdocHelper::Rake::Task.new(:jsdoc_toolkit)

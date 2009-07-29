@@ -36,6 +36,9 @@ You can give your jsdoc task a new name
 
 * rake
       sudo gem install rake
+      
+* open4 for testing
+      sudo gem install open4
 
 == INSTALL:
 

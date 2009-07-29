@@ -1,4 +1,3 @@
-
 module JsdocHelper
 
   # :stopdoc:
@@ -44,6 +43,8 @@ module JsdocHelper
 
 end  # module JsdocHelper
 
+require 'rubygems'
+require 'rake'
 JsdocHelper.require_all_libs_relative_to(__FILE__)
 
 # EOF

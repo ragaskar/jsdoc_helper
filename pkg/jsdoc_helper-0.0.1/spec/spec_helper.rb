@@ -13,4 +13,13 @@ Spec::Runner.configure do |config|
   # config.mock_with :rr
 end
 
+def quietly
+  orig_stdout = $stdout
+  $stdout = File.open('/dev/null', 'w')
+  output = yield
+  $stdout.close
+  $stdout = orig_stdout
+  output
+end
+
 # EOF
