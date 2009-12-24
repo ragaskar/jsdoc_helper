@@ -1,9 +1,0 @@
-== 0.0.2 / 2009-07-29
-* A few major enhancements
-  * Added rspec testing to ensure features are robust
-  * Added better ability to customize the jsdoc-toolkit command and options
-
-== 0.0.1 / 2009-07-27
-
-* 1 major enhancement
-  * Birthday!

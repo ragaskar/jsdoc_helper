@@ -1,45 +1,22 @@
-# Look in the tasks/setup.rb file for the various options that can be
-# configured in this Rakefile. The .rake files in the tasks directory
-# are where the options are used.
+namespace :jeweler do
 
-begin
-  require 'bones'
-  Bones.setup
-rescue LoadError
   begin
-    load 'tasks/setup.rb'
+    require 'jeweler'
+    require 'rake'
+    Jeweler::Tasks.new do |gemspec|
+      gemspec.name = "ragaskar-jsdoc_helper"
+      gemspec.summary = "jsdoc_helper"
+      gemspec.description = "Fork of jsdoc_helper"
+      gemspec.email = "ragaskar@gmail.com"
+      gemspec.homepage = "http://github.com/ragaskar/jsdoc_helper"
+      gemspec.description = "jsdoc_helper"
+      gemspec.authors = ["Rajan Agaskar"]
+      gemspec.files = FileList.new('bin/*', 'lib/**/*', 'ext/**/*')
+
+    # gemspec.add_dependency('rspec', '>= 1.1.5')
+    end
+    Jeweler::GemcutterTasks.new
   rescue LoadError
-    raise RuntimeError, '### please install the "bones" gem ###'
+    puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
   end
 end
-
-require 'rubygems'
-require 'cucumber'
-require 'cucumber/rake/task'
-namespace :features do
-  Cucumber::Rake::Task.new(:run) do |t|
-    t.cucumber_opts = "features --format pretty"
-  end
-end
-desc "Alias for 'features:run'"
-task :features => 'features:run'
-
-ensure_in_path 'lib'
-require 'jsdoc_helper'
-
-task :default => 'spec:run'
-
-PROJ.name = 'jsdoc_helper'
-PROJ.authors = 'Pete Gadomski'
-PROJ.email = 'pete.gadomski@gmail.com'
-PROJ.url = 'http://github.com/quentonc/jsdoc_helper/tree/master'
-PROJ.version = JsdocHelper::VERSION
-PROJ.rubyforge.name = 'jsdoc_helper'
-PROJ.readme_file = 'README.rdoc'
-PROJ.rdoc.exclude << %w(ext/jsdoc-toolkit .DS_Store)
-
-PROJ.spec.opts << '--color'
-
-CLEAN.include('test/tmp/**/*', 'test/tmp')
-
-# EOF
