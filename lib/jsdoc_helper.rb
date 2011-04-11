@@ -1,3 +1,11 @@
+unless String.method_defined?(:lines) then
+  class String
+    def lines
+      to_a
+    end
+  end
+end
+
 module JsdocHelper
 
   # :stopdoc:
