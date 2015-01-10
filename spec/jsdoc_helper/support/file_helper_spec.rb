@@ -78,7 +78,7 @@ describe FileHelper do
   end
   
   it "should produce a src prefix for documentation" do
-    doc_src_prefix.should =~ /^_Users_petegadomski_Developer_jsdoc_helper_test_tmp$/
+    doc_src_prefix.should =~ /^#{path.gsub('/', '_')}$/
   end
   
   it "should return a nice file list" do

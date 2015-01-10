@@ -59,11 +59,19 @@ module JsdocHelper
         end
         
         def out
-          @args[:out].to_a.to_s
+          if @args[:out].respond_to?(:lines)
+            @args[:out].lines.to_a.join('')
+          else
+            @args[:out].to_a.join('')
+          end
         end
         
         def files
-          @args[:files].to_a.join(' ')
+          if @args[:files].respond_to?(:lines)
+            @args[:files].lines.to_a.join(' ')
+          else
+            @args[:files].to_a.join(' ')
+          end
         end
         
         def template
@@ -75,9 +83,8 @@ module JsdocHelper
         end
         
         def options
-          @args[:options].to_a.join(' ')
-        end
-        
+          @args[:options].lines.to_a.join(' ')
+        end        
       end
     end
   end
